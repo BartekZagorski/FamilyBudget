@@ -7,10 +7,14 @@ using namespace std;
 
 class XmlFile
 {
-public:
+private:
     const string FILE_NAME;
 public:
-    XmlFile(string fileName) :FILE_NAME(fileName) {};
+    XmlFile(string fileName = "") :FILE_NAME(fileName) {};
+    string getFileName() const
+    {
+        return FILE_NAME;
+    }
 };
 
 #endif
