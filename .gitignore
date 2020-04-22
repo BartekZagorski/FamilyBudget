@@ -1,4 +1,6 @@
-FamilyBudget.*
+FamilyBudget.cbp
+FamilyBudget.depend
+FamilyBudget.layout
 obj/
 bin/
 users.xml

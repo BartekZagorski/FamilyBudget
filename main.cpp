@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
-#include "User.h"
-#include "FileWithUsers.h"
+#include "UserManager.h"
 
 using namespace std;
 
 int main()
 {
-    User user1(1, "Bartek", "Zagorski", "zagora17", "123456");
+    /*  User user1(1, "Bartek", "Zagorski", "zagora17", "123456");
     User user2 (2, "Emilka", "Zagorska", "emilia91", "654321");
     FileWithUsers file("users.xml");
     file.appendUserToFile(user1);
@@ -18,6 +17,12 @@ int main()
     {
         cout << itr->getUserId() << endl << itr->getFirstName() << endl << itr->getLastName() <<
         endl << itr->getLogin() << endl << itr->getPassword()<<endl<<endl;
-    }
+    }   */
+
+    UserManager userManager;
+
+    cout<< userManager.getLoggedInUserId()<<endl;
+    cout <<userManager.getFileWithUsers().getFileName()<<endl;
+
     return 0;
 }
