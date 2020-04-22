@@ -11,6 +11,12 @@ int UserManager::getLoggedInUserId()
 {
     return loggedInUserId;
 }
+
+void UserManager::setLoggedInUserId(int loggedInUserId)
+{
+    this->loggedInUserId = loggedInUserId;
+}
+
 FileWithUsers UserManager::getFileWithUsers()
 {
     return fileWithUsers;

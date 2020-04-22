@@ -20,6 +20,7 @@ class UserManager
 public:
     UserManager(int = 0, string = "users.xml");
     int getLoggedInUserId();
+    void setLoggedInUserId(int loggedInUserId);
     FileWithUsers getFileWithUsers();
 };
 
