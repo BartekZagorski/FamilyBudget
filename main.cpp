@@ -1,14 +1,13 @@
 #include <iostream>
 #include <vector>
-#include "UserManager.h"
+#include "FamilyBudget.h"
 
 using namespace std;
 
 int main()
 {
-    UserManager userManager;
-
-    userManager.registerNewUser();
+FamilyBudget familyBudget("users.xml");
+familyBudget.registerNewUser();
 
     return 0;
 }

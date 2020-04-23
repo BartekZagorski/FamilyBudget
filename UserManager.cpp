@@ -1,6 +1,6 @@
 #include "UserManager.h"
 
-UserManager::UserManager (int loggedInUserId, string fileName)
+UserManager::UserManager (string fileName, int loggedInUserId)
 : fileWithUsers(fileName)
 {
     this->loggedInUserId = loggedInUserId;
@@ -77,6 +77,6 @@ void UserManager::registerNewUser()
     users.push_back(newUser);
     fileWithUsers.appendUserToFile(newUser);
 
-    cout << "Konto zalozono pomyslnie.";
+    cout << "Konto zalozono pomyslnie." << endl;
     system ("pause");
 }
