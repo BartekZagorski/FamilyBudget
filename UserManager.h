@@ -5,6 +5,7 @@
 #include <vector>
 #include "User.h"
 #include "FileWithUsers.h"
+#include "AuxilliaryMethods.h"
 
 using namespace std;
 
@@ -22,6 +23,8 @@ public:
     int getLoggedInUserId();
     void setLoggedInUserId(int loggedInUserId);
     FileWithUsers getFileWithUsers();
+    User addDataOfNewUser();
+    void registerNewUser();
 };
 
 
