@@ -130,3 +130,55 @@ int Date::enterTheDate()
     else
         return 20000101;
 }
+
+int Date::getTodayDate()
+{
+    time_t rawtime;
+    time(&rawtime);
+    tm* ptr;
+    ptr = localtime(&rawtime);
+    mergedDate = (ptr->tm_year+1900)*10000+(ptr->tm_mon+1)*100+ptr->tm_mday;
+    return mergedDate;
+}
+
+int Date::returnDateOfTheEndOfTheCurrentMonth()
+{
+    mergedDate = getTodayDate();
+    mergedDate -= mergedDate%100;
+    mergedDate += AuxilliaryMethods::computeTheNumberOfDaysInMonth(mergedDate/10000,(mergedDate/100)%100);
+    return mergedDate;
+}
+
+int Date::returnDateOfTheBeginningOfTheCurrentMonth()
+{
+    mergedDate = getTodayDate();
+    mergedDate -= mergedDate%100;
+    mergedDate++;
+    return mergedDate;
+}
+
+int Date::returnDateOfTheEndOfPreviousMonth()
+{
+    mergedDate = getTodayDate();
+    int currentMonth = (mergedDate/100)%100;
+    if (currentMonth == 1)
+        mergedDate = mergedDate - 10000 + 1100;
+    else
+        mergedDate -= 100;
+    mergedDate -= mergedDate%100;
+    mergedDate += AuxilliaryMethods::computeTheNumberOfDaysInMonth(mergedDate/10000,(mergedDate/100)%100);
+    return mergedDate;
+}
+
+int Date::returnDateOfTheBeginningOfPreviousMonth()
+{
+    mergedDate = getTodayDate();
+    int currentMonth = (mergedDate/100)%100;
+    if (currentMonth == 1)
+        mergedDate = mergedDate - 10000 + 1100;
+    else
+        mergedDate -= 100;
+    mergedDate -= mergedDate%100;
+    mergedDate++;
+    return mergedDate;
+}

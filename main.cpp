@@ -8,8 +8,7 @@ using namespace std;
 int main()
 {
 Date date;
-date.mergedDate = date.enterTheDate();
-cout<< date.mergedDate;
+cout<<date.returnDateOfTheBeginningOfPreviousMonth();
 
     return 0;
 }

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <time.h>
 #include <windows.h>
 #include "AuxilliaryMethods.h"
 
@@ -23,6 +24,11 @@ public:
 
     Date(int = 20000101);
     int enterTheDate();
+    int getTodayDate();
+    int returnDateOfTheEndOfTheCurrentMonth();
+    int returnDateOfTheBeginningOfTheCurrentMonth();
+    int returnDateOfTheEndOfPreviousMonth();
+    int returnDateOfTheBeginningOfPreviousMonth();
 
 };
 
