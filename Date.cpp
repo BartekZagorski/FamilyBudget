@@ -5,6 +5,11 @@ Date::Date(int date)
         this->mergedDate = date;
 }
 
+int Date::getMergedDate()
+{
+    return mergedDate;
+}
+
 vector <int> Date::getDateFromSpecifiedFormat(string lineWithDateSeparatedByDashes)
 {
     int year, month, day;

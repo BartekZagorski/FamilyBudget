@@ -11,7 +11,6 @@ using namespace std;
 
 class Date
 {
-    public:
     int mergedDate;
 
     vector <int> getDateFromSpecifiedFormat(string lineWithDateSeparatedByDashes);
@@ -23,6 +22,7 @@ class Date
 public:
 
     Date(int = 20000101);
+    int getMergedDate();
     int enterTheDate();
     int getTodayDate();
     int returnDateOfTheEndOfTheCurrentMonth();
