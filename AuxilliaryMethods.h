@@ -9,6 +9,8 @@ class AuxilliaryMethods
 {
 public:
     static string loadLine();
+    static int computeTheNumberOfDaysInMonth (int year, int month);
+    static bool isLeap (int year);
 };
 
 

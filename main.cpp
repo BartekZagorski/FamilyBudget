@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
 #include "FamilyBudget.h"
+#include "Date.h"
 
 using namespace std;
 
 int main()
 {
-FamilyBudget familyBudget("users.xml");
-familyBudget.registerNewUser();
+Date date;
+date.mergedDate = date.enterTheDate();
+cout<< date.mergedDate;
 
     return 0;
 }
