@@ -45,3 +45,19 @@ bool AuxilliaryMethods::isLeap (int year)
     else
         return false;
 }
+
+string AuxilliaryMethods::convertFloatToString(float number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+string AuxilliaryMethods::convertIntToString(int number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}

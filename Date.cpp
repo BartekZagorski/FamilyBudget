@@ -187,3 +187,11 @@ int Date::returnDateOfTheBeginningOfPreviousMonth()
     mergedDate++;
     return mergedDate;
 }
+
+string Date::convertDateFromIntegerToStringSeparatedByDashes()
+{
+    string dateSeparatedByDashes = AuxilliaryMethods::convertIntToString(mergedDate);
+    dateSeparatedByDashes.insert(6, "-");
+    dateSeparatedByDashes.insert(4, "-");
+    return dateSeparatedByDashes;
+}

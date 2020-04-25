@@ -2,6 +2,7 @@
 #define TRANSACTION_H
 
 #include <iostream>
+#include <math.h>
 #include "Date.h"
 
 using namespace std;

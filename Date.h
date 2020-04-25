@@ -17,11 +17,13 @@ class Date
     bool isDateFormatCorrect(string date);
     bool isDateCorrect(vector <int> date);
     bool isDateGood(string dateSeparatedByDashes);
-    int eliminateDashesFromDate(string lineWithDateSeparatedByDashes);
+    public:
+    string convertDateFromIntegerToStringSeparatedByDashes();
 
 public:
 
     Date(int = 20000101);
+    static int eliminateDashesFromDate(string lineWithDateSeparatedByDashes);
     int getMergedDate();
     int enterTheDate();
     int getTodayDate();

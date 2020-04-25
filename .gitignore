@@ -4,3 +4,5 @@ FamilyBudget.layout
 obj/
 bin/
 users.xml
+incomes.xml
+expenses.xml
