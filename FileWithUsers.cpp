@@ -62,3 +62,39 @@ xml.AddElem( "password", user.getPassword() );
 
 xml.Save(getFileName().c_str());
 }
+
+void FileWithUsers::changePasswordInXmlFile(User user)
+{
+    CMarkup xml;
+
+    bool fileExists = xml.Load( getFileName().c_str() );
+
+    if (!fileExists) {}
+    else
+    {
+        xml.FindElem("USERS");
+        xml.IntoElem();
+        while (xml.FindElem("USER"))
+            {
+            xml.FindChildElem("UserID");
+            if (atoi(xml.GetChildData().c_str()) == user.getUserId())
+            {
+                xml.IntoElem();
+                xml.ResetMainPos();
+                xml.FindElem("UserID");
+                xml.SetData(user.getUserId());
+                xml.FindElem( "firstName" );
+                xml.SetData(user.getFirstName());
+                xml.FindElem( "lastName" );
+                xml.SetData(user.getLastName());
+                xml.FindElem( "login" );
+                xml.SetData(user.getLogin());
+                xml.FindElem( "password" );
+                xml.SetData(user.getPassword());
+                break;
+            }
+        }
+    xml.Save(getFileName().c_str());
+    }
+}
+

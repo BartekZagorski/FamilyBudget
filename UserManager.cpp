@@ -128,3 +128,22 @@ bool UserManager::isUserLoggedIn()
     else
         return false;
 }
+
+void UserManager::changeLoggedInUserPassword()
+{
+    string password = "";
+    cout << "podaj nowe haslo: ";
+    password = AuxilliaryMethods::loadLine();
+
+    for (vector<User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getUserId() == loggedInUserId)
+        {
+            itr -> setPassword(password);
+            fileWithUsers.changePasswordInXmlFile(*itr);
+            cout << "haslo zostalo zmienione." <<endl;
+            system ("pause");
+            break;
+        }
+    }
+}

@@ -34,3 +34,8 @@ void FamilyBudget::logOut()
     delete transactionManager;
     transactionManager = NULL;
 }
+
+void FamilyBudget::changeLoggedInUserPassword()
+{
+    userManager.changeLoggedInUserPassword();
+}

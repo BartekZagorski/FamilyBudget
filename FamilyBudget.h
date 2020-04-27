@@ -21,6 +21,7 @@ public:
     void registerNewUser();
     void login();
     void logOut();
+    void changeLoggedInUserPassword();
 };
 
 #endif
