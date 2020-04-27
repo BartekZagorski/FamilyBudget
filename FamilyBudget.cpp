@@ -19,3 +19,12 @@ void FamilyBudget::registerNewUser()
 {
     userManager.registerNewUser();
 }
+
+void FamilyBudget::login()
+{
+    userManager.login();
+    if (userManager.isUserLoggedIn())
+    {
+        transactionManager = new TransactionManager("incomes.xml", "expenses.xml", userManager.getLoggedInUserId());
+    }
+}

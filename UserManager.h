@@ -18,6 +18,7 @@ class UserManager
     bool doesLoginExist(string login);
     int getNewUserId();
 
+
 public:
     UserManager(string = "users.xml", int = 0);
     int getLoggedInUserId();
@@ -25,6 +26,8 @@ public:
     FileWithUsers getFileWithUsers();
     User addDataOfNewUser();
     void registerNewUser();
+    int login();
+    bool isUserLoggedIn();
 };
 
 

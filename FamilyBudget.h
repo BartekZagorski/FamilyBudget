@@ -19,6 +19,7 @@ public:
     FamilyBudget(string = "users.xml", string = "incomes.xml", string = "expenses");
     ~FamilyBudget();
     void registerNewUser();
+    void login();
 };
 
 #endif

@@ -80,3 +80,51 @@ void UserManager::registerNewUser()
     cout << "Konto zalozono pomyslnie." << endl;
     system ("pause");
 }
+
+int UserManager::login()
+{
+    string login = "";
+    string password = "";
+
+    cout << "Podaj login: ";
+    login = AuxilliaryMethods::loadLine();
+
+    for (int i = 0; i < users.size(); i++)
+    {
+        if (users[i].getLogin() == login)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                cout << "podaj haslo: ";
+                password = AuxilliaryMethods::loadLine();
+                if (users[i].getPassword() == password)
+                {
+                    cout << "zalogowales sie." << endl;
+                    system ("pause");
+                    loggedInUserId = users[i].getUserId();
+                    return loggedInUserId;
+                }
+                else
+                {
+                    cout << "podane haslo jest nieprawidlowe." << endl;
+                    system ("pause");
+                }
+            }
+            cout << "3 razy podano bledne haslo." << endl;
+            system ("pause");
+            return 0;
+        }
+    }
+
+    cout << "Nie istnieje uzytkownik o podanym loginie." <<endl;
+    system ("pause");
+    return 0;
+}
+
+bool UserManager::isUserLoggedIn()
+{
+    if (loggedInUserId > 0)
+        return true;
+    else
+        return false;
+}
