@@ -28,3 +28,9 @@ void FamilyBudget::login()
         transactionManager = new TransactionManager("incomes.xml", "expenses.xml", userManager.getLoggedInUserId());
     }
 }
+void FamilyBudget::logOut()
+{
+    userManager.setLoggedInUserId(0);
+    delete transactionManager;
+    transactionManager = NULL;
+}

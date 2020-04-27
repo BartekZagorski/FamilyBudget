@@ -20,6 +20,7 @@ public:
     ~FamilyBudget();
     void registerNewUser();
     void login();
+    void logOut();
 };
 
 #endif
