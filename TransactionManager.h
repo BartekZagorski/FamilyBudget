@@ -16,9 +16,12 @@ class TransactionManager
     FileWithTransactions fileWithIncomes;
     FileWithTransactions fileWithExpenses;
 
+    Transaction enterNewTransactionData(string typeOfTransaction);
+
     public:
-    TransactionManager(string, string, int = 0);
+    TransactionManager(string = "incomes.xml", string = "expenses.xml", int = 0);
     int getLoggedInUserId();
+    int addTransaction(string typeOfTransaction);
 
 };
 

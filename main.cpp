@@ -11,10 +11,7 @@ int main()
 {
     FamilyBudget f1;
     f1.login();
-    f1.changeLoggedInUserPassword();
-
-
-
+    f1.addIncome();
 
 
 

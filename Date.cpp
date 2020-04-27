@@ -130,7 +130,8 @@ int Date::enterTheDate()
     string dateGivenByUser = AuxilliaryMethods::loadLine();
     if (isDateGood(dateGivenByUser))
     {
-        return eliminateDashesFromDate(dateGivenByUser);
+        mergedDate = eliminateDashesFromDate(dateGivenByUser);
+        return mergedDate;
     }
     else
         return 20000101;

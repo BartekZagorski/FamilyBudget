@@ -16,12 +16,13 @@ class FamilyBudget
     const string NAME_OF_FILE_WITH_EXPENSES;
 
 public:
-    FamilyBudget(string = "users.xml", string = "incomes.xml", string = "expenses");
+    FamilyBudget(string = "users.xml", string = "incomes.xml", string = "expenses.xml");
     ~FamilyBudget();
     void registerNewUser();
     void login();
     void logOut();
     void changeLoggedInUserPassword();
+    void addIncome();
 };
 
 #endif

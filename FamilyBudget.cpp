@@ -39,3 +39,8 @@ void FamilyBudget::changeLoggedInUserPassword()
 {
     userManager.changeLoggedInUserPassword();
 }
+
+void FamilyBudget::addIncome()
+{
+    transactionManager -> addTransaction("income");
+}

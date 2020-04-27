@@ -56,6 +56,8 @@ vector <Transaction> FileWithTransactions::loadLoggedInUserTransactionFromFile(i
         xml.IntoElem();
         while (xml.FindElem("TRANSACTION"))
         {
+            xml.FindChildElem("TransactionID");
+            lastTransactionId = atoi(xml.GetChildData().c_str());
             xml.FindChildElem("UserID");
             if (atoi(xml.GetChildData().c_str()) == loggedInUserId)
             {
