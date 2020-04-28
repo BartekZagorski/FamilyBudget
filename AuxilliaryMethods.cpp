@@ -3,6 +3,8 @@
 string AuxilliaryMethods::loadLine()
     {
         string line = "";
+        cin.clear();
+        cin.sync();
         getline(cin, line);
         return line;
     }
@@ -60,4 +62,17 @@ string AuxilliaryMethods::convertIntToString(int number)
     ss << number;
     string str = ss.str();
     return str;
+}
+
+char AuxilliaryMethods::chooseOptionFromEditionMenu()
+{
+    char choice;
+
+    cout << "---------------MENU EDYCJA---------------" << endl;
+    cout << "1. Edytuj date. " << endl;
+    cout << "2. Edytuj kwote. " << endl;
+    cout << "3. Edytuj komentarz " << endl;
+
+    choice = getch();
+    return choice;
 }

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <conio.h>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ public:
     static bool isLeap (int year);
     static string convertFloatToString(float number);
     static string convertIntToString(int number);
+    static char chooseOptionFromEditionMenu();
 };
 
 

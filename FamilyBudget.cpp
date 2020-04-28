@@ -44,3 +44,11 @@ void FamilyBudget::addIncome()
 {
     transactionManager -> addTransaction("income");
 }
+void FamilyBudget::addExpense()
+{
+    transactionManager -> addTransaction("expense");
+}
+void FamilyBudget::editIncome()
+{
+    transactionManager -> editTransaction("income");
+}

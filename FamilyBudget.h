@@ -23,6 +23,8 @@ public:
     void logOut();
     void changeLoggedInUserPassword();
     void addIncome();
+    void addExpense();
+    void editIncome();
 };
 
 #endif

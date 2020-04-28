@@ -17,11 +17,13 @@ class TransactionManager
     FileWithTransactions fileWithExpenses;
 
     Transaction enterNewTransactionData(string typeOfTransaction);
+    int findIndexOfTransaction (int transactionId, string typeOfTransaction);
 
     public:
     TransactionManager(string = "incomes.xml", string = "expenses.xml", int = 0);
     int getLoggedInUserId();
     int addTransaction(string typeOfTransaction);
+    void editTransaction(string typeOfTransaction);
 
 };
 

@@ -29,7 +29,6 @@ Transaction TransactionManager::enterNewTransactionData(string typeOfTransaction
     newTransaction.setUserId(LOGGED_IN_USER_ID);
 
     Date date;
-    cout << "Podaj date w formacie rrrr-mm-dd: ";
     date.enterTheDate();
     newTransaction.setDate(date);
     cout << endl <<"Podaj Kwote: ";
@@ -61,3 +60,59 @@ int TransactionManager::addTransaction(string typeOfTransaction)
     return newTransaction.getTransactionId();
 }
 
+void TransactionManager::editTransaction(string typeOfTransaction)
+{
+    int idGivenByUser = 0;
+    int indexOfTransaction = 0;
+    cout << "podaj ID przychodu, ktory chcesz edytowac. ";
+    cin >> idGivenByUser;
+    indexOfTransaction = findIndexOfTransaction(idGivenByUser, "income");
+    char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
+
+    switch (choice)
+    {
+    case '1':
+    {
+        Date date;
+        incomes[indexOfTransaction].setDate(date.enterTheDate());
+        fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+        cout << "edycja zakonczona pomyslnie" << endl;
+        system ("pause");
+        break;
+    }
+    case '2':
+    {
+        float amount = 0;
+        cout << "podaj kwote: ";
+        cin >> amount;
+        incomes[indexOfTransaction].setAmount(amount);
+        fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+        cout << "edycja zakonczona pomyslnie" << endl;
+        system ("pause");
+        break;
+    }
+
+    }
+}
+
+int TransactionManager::findIndexOfTransaction (int transactionId, string typeOfTransaction)
+{
+    if (typeOfTransaction == "income")
+    {
+        for (int i = 0; i < incomes.size(); i++)
+        {
+            if (incomes[i].getTransactionId() == transactionId)
+                return i;
+        }
+    }
+    else
+    {
+        for (int i = 0; i < expenses.size(); i++)
+        {
+            if (expenses[i].getTransactionId() == transactionId)
+                return i;
+        }
+    }
+
+
+}

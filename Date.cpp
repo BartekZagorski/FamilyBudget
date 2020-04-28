@@ -127,14 +127,18 @@ int Date::eliminateDashesFromDate(string lineWithDateSeparatedByDashes)
 
 int Date::enterTheDate()
 {
-    string dateGivenByUser = AuxilliaryMethods::loadLine();
-    if (isDateGood(dateGivenByUser))
+    string dateGivenByUser="";
+    do
     {
-        mergedDate = eliminateDashesFromDate(dateGivenByUser);
-        return mergedDate;
+        system("cls");
+        cout << "Podaj date w formacie rrrr-mm-dd: ";
+        dateGivenByUser = AuxilliaryMethods::loadLine();
     }
-    else
-        return 20000101;
+    while (!isDateGood(dateGivenByUser));
+
+    mergedDate = eliminateDashesFromDate(dateGivenByUser);
+    return mergedDate;
+
 }
 
 int Date::getTodayDate()
