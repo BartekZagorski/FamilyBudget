@@ -25,6 +25,7 @@ public:
     void addIncome();
     void addExpense();
     void editIncome();
+    void editExpense();
 };
 
 #endif

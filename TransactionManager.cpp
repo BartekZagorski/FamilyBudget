@@ -64,34 +64,81 @@ void TransactionManager::editTransaction(string typeOfTransaction)
 {
     int idGivenByUser = 0;
     int indexOfTransaction = 0;
-    cout << "podaj ID przychodu, ktory chcesz edytowac. ";
-    cin >> idGivenByUser;
-    indexOfTransaction = findIndexOfTransaction(idGivenByUser, "income");
-    char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
+    if (typeOfTransaction == "income")
+    {
+        cout << "podaj ID przychodu, ktory chcesz edytowac. ";
+        cin >> idGivenByUser;
+        indexOfTransaction = findIndexOfTransaction(idGivenByUser, "income");
+        char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
 
-    switch (choice)
-    {
-    case '1':
-    {
-        Date date;
-        incomes[indexOfTransaction].setDate(date.enterTheDate());
-        fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+        switch (choice)
+        {
+        case '1':
+            {
+                Date date;
+                incomes[indexOfTransaction].setDate(date.enterTheDate());
+                fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+                break;
+            }
+        case '2':
+            {
+                float amount = 0;
+                cout << "podaj kwote: ";
+                cin >> amount;
+                incomes[indexOfTransaction].setAmount(amount);
+                fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+                break;
+            }
+        case '3':
+            {
+                string item = "";
+                cout << "podaj komentarz: ";
+                item = AuxilliaryMethods::loadLine();
+                incomes[indexOfTransaction].setItem(item);
+                fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+                break;
+            }
+        }
         cout << "edycja zakonczona pomyslnie" << endl;
         system ("pause");
-        break;
     }
-    case '2':
+    else
     {
-        float amount = 0;
-        cout << "podaj kwote: ";
-        cin >> amount;
-        incomes[indexOfTransaction].setAmount(amount);
-        fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+        cout << "podaj ID wydatku, ktory chcesz edytowac. ";
+        cin >> idGivenByUser;
+        indexOfTransaction = findIndexOfTransaction(idGivenByUser, "expense");
+        char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
+
+        switch (choice)
+        {
+        case '1':
+            {
+                Date date;
+                expenses[indexOfTransaction].setDate(date.enterTheDate());
+                fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
+                break;
+            }
+        case '2':
+            {
+                float amount = 0;
+                cout << "podaj kwote: ";
+                cin >> amount;
+                expenses[indexOfTransaction].setAmount(amount);
+                fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
+                break;
+            }
+        case '3':
+            {
+                string item = "";
+                cout << "podaj komentarz: ";
+                item = AuxilliaryMethods::loadLine();
+                expenses[indexOfTransaction].setItem(item);
+                fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
+                break;
+            }
+        }
         cout << "edycja zakonczona pomyslnie" << endl;
         system ("pause");
-        break;
-    }
-
     }
 }
 
@@ -113,6 +160,4 @@ int TransactionManager::findIndexOfTransaction (int transactionId, string typeOf
                 return i;
         }
     }
-
-
 }

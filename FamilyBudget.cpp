@@ -52,3 +52,7 @@ void FamilyBudget::editIncome()
 {
     transactionManager -> editTransaction("income");
 }
+void FamilyBudget::editExpense()
+{
+    transactionManager -> editTransaction("expense");
+}
