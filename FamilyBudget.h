@@ -26,6 +26,8 @@ public:
     void addExpense();
     void editIncome();
     void editExpense();
+    void deleteIncome();
+    void deleteExpense();
 };
 
 #endif

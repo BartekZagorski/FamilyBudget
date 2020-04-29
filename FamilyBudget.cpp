@@ -56,3 +56,11 @@ void FamilyBudget::editExpense()
 {
     transactionManager -> editTransaction("expense");
 }
+void FamilyBudget::deleteIncome()
+{
+    transactionManager -> deleteTransaction("income");
+}
+void FamilyBudget::deleteExpense()
+{
+    transactionManager -> deleteTransaction("expense");
+}

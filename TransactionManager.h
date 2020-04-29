@@ -24,6 +24,7 @@ class TransactionManager
     int getLoggedInUserId();
     int addTransaction(string typeOfTransaction);
     void editTransaction(string typeOfTransaction);
+    int deleteTransaction(string typeOfTransaction);
 
 };
 

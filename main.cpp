@@ -11,8 +11,7 @@ int main()
 {
     FamilyBudget f1;
     f1.login();
-    f1.editIncome();
-    f1.editExpense();
+    f1.deleteExpense();
 
 
 

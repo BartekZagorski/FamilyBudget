@@ -119,6 +119,7 @@ void FileWithTransactions::editTransactionInsideFile(Transaction transaction)
 void FileWithTransactions::deleteTransactionFromFile(int transactionId)
 {
     CMarkup xml;
+    int lastIdInFile = lastTransactionId;
 
     bool fileExists = xml.Load( getFileName().c_str() );
 
@@ -135,6 +136,8 @@ void FileWithTransactions::deleteTransactionFromFile(int transactionId)
                 xml.RemoveElem();
                 break;
             }
+            if (lastIdInFile == transactionId)
+                lastTransactionId = atoi(xml.GetChildData().c_str());
         }
         xml.Save(getFileName().c_str());
     }

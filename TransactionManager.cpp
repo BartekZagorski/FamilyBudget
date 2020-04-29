@@ -69,6 +69,8 @@ void TransactionManager::editTransaction(string typeOfTransaction)
         cout << "podaj ID przychodu, ktory chcesz edytowac. ";
         cin >> idGivenByUser;
         indexOfTransaction = findIndexOfTransaction(idGivenByUser, "income");
+        if (indexOfTransaction == -1)
+            return;
         char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
 
         switch (choice)
@@ -107,6 +109,8 @@ void TransactionManager::editTransaction(string typeOfTransaction)
         cout << "podaj ID wydatku, ktory chcesz edytowac. ";
         cin >> idGivenByUser;
         indexOfTransaction = findIndexOfTransaction(idGivenByUser, "expense");
+        if (indexOfTransaction == -1)
+            return;
         char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
 
         switch (choice)
@@ -158,6 +162,75 @@ int TransactionManager::findIndexOfTransaction (int transactionId, string typeOf
         {
             if (expenses[i].getTransactionId() == transactionId)
                 return i;
+        }
+    }
+    cout << "Nie odnaleziono podanego ID."<<endl;
+    system("pause");
+    return -1;
+}
+
+int TransactionManager::deleteTransaction(string typeOfTransaction)
+{
+    int idGivenByUser = 0;
+    int indexOfTransaction = 0;
+    if (typeOfTransaction == "income")
+    {
+        cout << "Podaj ID przychodu, ktory chcesz usunac: ";
+        cin >> idGivenByUser;
+        indexOfTransaction = findIndexOfTransaction(idGivenByUser, "income");
+        if (indexOfTransaction == -1)
+            return fileWithIncomes.getLastTransactionId();
+        char choice;
+        do
+        {
+            system("cls");
+            cout << "czy na pewno usunac przychod o ID " << idGivenByUser << "? (t/n) ";
+            choice = getch();
+        }
+        while (choice != 't' && choice != 'n' && choice != 'T' && choice != 'N');
+        if (choice == 't' || choice == 'T')
+        {
+            incomes.erase(incomes.begin() + indexOfTransaction);
+            fileWithIncomes.deleteTransactionFromFile(idGivenByUser);
+            cout << endl << "usunieto przychod. " << endl;
+            system("pause");
+            return fileWithIncomes.getLastTransactionId();
+        }
+        else
+        {
+            cout << endl << "przychod nie zostal usuniety. " << endl;
+            system("pause");
+            return fileWithIncomes.getLastTransactionId();
+        }
+    }
+    else
+    {
+        cout << "Podaj ID wydatku, ktory chcesz usunac: ";
+        cin >> idGivenByUser;
+        indexOfTransaction = findIndexOfTransaction(idGivenByUser, "expense");
+        if (indexOfTransaction == -1)
+            return fileWithExpenses.getLastTransactionId();
+        char choice;
+        do
+        {
+            system("cls");
+            cout << "czy na pewno usunac wydatek o ID " << idGivenByUser << "? (t/n) ";
+            choice = getch();
+        }
+        while (choice != 't' && choice != 'n' && choice != 'T' && choice != 'N');
+        if (choice == 't' || choice == 'T')
+        {
+            expenses.erase(expenses.begin() + indexOfTransaction);
+            fileWithExpenses.deleteTransactionFromFile(idGivenByUser);
+            cout << endl << "usunieto wydatek. " << endl;
+            system("pause");
+            return fileWithExpenses.getLastTransactionId();
+        }
+        else
+        {
+            cout << endl << "wydatek nie zostal usuniety. " << endl;
+            system("pause");
+            return fileWithExpenses.getLastTransactionId();
         }
     }
 }
