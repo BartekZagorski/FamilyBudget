@@ -21,9 +21,20 @@ void Transaction::setDate (Date date)
 {
     this -> date = date;
 }
-void Transaction::setAmount (float amount)
+bool Transaction::setAmount (string amount)
 {
-    this -> amount = amount;
+    if (isAmountGood(amount))
+    {
+        this -> amount = atof(amount.c_str());
+        return true;
+    }
+    else
+    {
+        cout << "Podana kwota jest nieprawidlowa." << endl;
+        system ("pause");
+        return false;
+    }
+
 }
 void Transaction::setItem (string item)
 {
@@ -49,3 +60,42 @@ string Transaction::getItem()
 {
     return item;
 }
+bool Transaction::isAmountGood(string loadedLine)
+{
+    int numberOfSeparators = 0;
+    for (int i = 0; i < loadedLine.length(); ++i)
+    {
+        if (numberOfSeparators > 1)
+            return false;
+        if (i == 0)
+        {
+            if (!isdigit(loadedLine[i]))
+                return false;
+        }
+        else if (!isdigit(loadedLine[i]))
+        {
+            if (loadedLine[i] != ',' && loadedLine[i] != '.')
+                return false;
+            else
+            {
+                numberOfSeparators++;
+                if (loadedLine[i] == ',')
+                    loadedLine[i] = '.';
+            }
+        }
+    }
+    return true;
+}
+string Transaction::enterAmount()
+{
+    string amount = "";
+    do
+    {
+        system("cls");
+        cout << "Podaj Kwote: ";
+        amount = AuxilliaryMethods::loadLine();
+    }
+    while (!setAmount(amount));
+    return amount;
+}
+

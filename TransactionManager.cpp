@@ -19,22 +19,31 @@ Transaction TransactionManager::enterNewTransactionData(string typeOfTransaction
 {
     Transaction newTransaction;
     string loadedLine = "";
-
-
     if (typeOfTransaction == "income")
-        newTransaction.setTransactionId(fileWithIncomes.getLastTransactionId()+1);
+        {
+            fileWithIncomes.setLastTransactionId(fileWithIncomes.getLastTransactionId()+1);
+            newTransaction.setTransactionId(fileWithIncomes.getLastTransactionId());
+        }
     else
-        newTransaction.setTransactionId(fileWithExpenses.getLastTransactionId()+1);
-
+        {
+            fileWithExpenses.setLastTransactionId(fileWithExpenses.getLastTransactionId()+1);
+            newTransaction.setTransactionId(fileWithExpenses.getLastTransactionId());
+        }
     newTransaction.setUserId(LOGGED_IN_USER_ID);
-
     Date date;
-    date.enterTheDate();
+    cout << "Czy chcesz dodac transakcje z dnia dzisiejszego? (t/n)";
+    char choice;
+    while (choice != 't' && choice != 'n' && choice != 'T' && choice != 'N')
+    {
+        choice = getch();
+    }
+    if (choice == 't' || choice == 'T')
+        date.getTodayDate();
+    else
+        date.enterTheDate();
     newTransaction.setDate(date);
-    cout << endl <<"Podaj Kwote: ";
-    loadedLine = AuxilliaryMethods::loadLine();
-    newTransaction.setAmount(atof(loadedLine.c_str()));
-    cout << endl <<"Podaj komentarz: ";
+    loadedLine = newTransaction.enterAmount();
+    cout << "Podaj komentarz: ";
     loadedLine = AuxilliaryMethods::loadLine();
     newTransaction.setItem(loadedLine);
 
@@ -84,9 +93,8 @@ void TransactionManager::editTransaction(string typeOfTransaction)
             }
         case '2':
             {
-                float amount = 0;
-                cout << "podaj kwote: ";
-                cin >> amount;
+                string amount = "";
+                amount = incomes[indexOfTransaction].enterAmount();
                 incomes[indexOfTransaction].setAmount(amount);
                 fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
                 break;
@@ -124,9 +132,8 @@ void TransactionManager::editTransaction(string typeOfTransaction)
             }
         case '2':
             {
-                float amount = 0;
-                cout << "podaj kwote: ";
-                cin >> amount;
+                string amount = "";
+                amount = expenses[indexOfTransaction].enterAmount();
                 expenses[indexOfTransaction].setAmount(amount);
                 fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
                 break;
@@ -233,4 +240,27 @@ int TransactionManager::deleteTransaction(string typeOfTransaction)
             return fileWithExpenses.getLastTransactionId();
         }
     }
+}
+
+void TransactionManager::showAllIncomes()
+{
+    sortIncomesByDate();
+    vector <Transaction>::iterator itr = incomes.begin();
+    for (itr; itr < incomes.end(); ++itr)
+    {
+        cout << itr -> getTransactionId() <<
+        endl << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
+        << endl << fixed << setprecision(2) << itr->getAmount() << endl << itr->getItem()
+        << endl << endl;
+    }
+}
+
+bool TransactionManager::compareByDate (Transaction first, Transaction second)
+{
+    return (first.getDate().getMergedDate() < second.getDate().getMergedDate());
+}
+
+void TransactionManager::sortIncomesByDate()
+{
+    sort(incomes.begin(), incomes.end(), TransactionManager::compareByDate);
 }

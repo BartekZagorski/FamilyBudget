@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Transaction.h"
 #include "FileWithTransactions.h"
 
@@ -25,6 +26,9 @@ class TransactionManager
     int addTransaction(string typeOfTransaction);
     void editTransaction(string typeOfTransaction);
     int deleteTransaction(string typeOfTransaction);
+    void showAllIncomes();
+    static bool compareByDate (Transaction first, Transaction second);
+    void sortIncomesByDate();
 
 };
 

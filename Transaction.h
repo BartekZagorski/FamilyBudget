@@ -22,13 +22,16 @@ public:
     void setTransactionId (int transactionId);
     void setUserId (int userId);
     void setDate (Date date);
-    void setAmount (float amount);
+    bool setAmount (string amount);
     void setItem (string item);
     int getTransactionId();
     int getUserId();
     Date getDate();
     float getAmount();
     string getItem();
+    bool isAmountGood(string loadedLine);
+    string enterAmount ();
+
 };
 
 #endif

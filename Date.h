@@ -17,8 +17,6 @@ class Date
     bool isDateFormatCorrect(string date);
     bool isDateCorrect(vector <int> date);
     bool isDateGood(string dateSeparatedByDashes);
-    public:
-    string convertDateFromIntegerToStringSeparatedByDashes();
 
 public:
 
@@ -31,6 +29,7 @@ public:
     int returnDateOfTheBeginningOfTheCurrentMonth();
     int returnDateOfTheEndOfPreviousMonth();
     int returnDateOfTheBeginningOfPreviousMonth();
+    string convertDateFromIntegerToStringSeparatedByDashes();
 
 };
 

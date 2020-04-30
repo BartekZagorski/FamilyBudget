@@ -64,3 +64,7 @@ void FamilyBudget::deleteExpense()
 {
     transactionManager -> deleteTransaction("expense");
 }
+void FamilyBudget::showAllIncomes()
+{
+    transactionManager -> showAllIncomes();
+}

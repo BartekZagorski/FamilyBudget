@@ -76,3 +76,4 @@ char AuxilliaryMethods::chooseOptionFromEditionMenu()
     choice = getch();
     return choice;
 }
+

@@ -28,6 +28,7 @@ public:
     void editExpense();
     void deleteIncome();
     void deleteExpense();
+    void showAllIncomes();
 };
 
 #endif

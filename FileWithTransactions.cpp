@@ -70,7 +70,7 @@ vector <Transaction> FileWithTransactions::loadLoggedInUserTransactionFromFile(i
                 xml.FindElem( "date" );
                 transaction.setDate(Date::eliminateDashesFromDate(xml.GetData().c_str()));
                 xml.FindElem( "amount" );
-                transaction.setAmount(atof(xml.GetData().c_str()));
+                transaction.setAmount(xml.GetData());
                 xml.FindElem( "item" );
                 transaction.setItem(xml.GetData());
                 xml.OutOfElem();
