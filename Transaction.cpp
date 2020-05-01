@@ -62,6 +62,8 @@ string Transaction::getItem()
 }
 bool Transaction::isAmountGood(string loadedLine)
 {
+    if (loadedLine.length() == 0)
+        return false;
     int numberOfSeparators = 0;
     for (int i = 0; i < loadedLine.length(); ++i)
     {

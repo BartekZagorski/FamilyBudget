@@ -43,6 +43,7 @@ Transaction TransactionManager::enterNewTransactionData(string typeOfTransaction
         date.enterTheDate();
     newTransaction.setDate(date);
     loadedLine = newTransaction.enterAmount();
+    system("cls");
     cout << "Podaj komentarz: ";
     loadedLine = AuxilliaryMethods::loadLine();
     newTransaction.setItem(loadedLine);
@@ -263,4 +264,129 @@ bool TransactionManager::compareByDate (Transaction first, Transaction second)
 void TransactionManager::sortIncomesByDate()
 {
     sort(incomes.begin(), incomes.end(), TransactionManager::compareByDate);
+}
+
+void TransactionManager::sortExpensesByDate()
+{
+    sort(expenses.begin(), expenses.end(), TransactionManager::compareByDate);
+}
+
+void TransactionManager::showStatementOfCurrentMonth()
+{
+    Date dateOfBegin, dateOfEnd;
+    int numberOfIncomes = 0, numberOfExpenses = 0;
+    float sumOfIncomes = 0, sumOfExpenses = 0, balance = 0;
+
+    dateOfBegin.returnDateOfTheBeginningOfTheCurrentMonth();
+    dateOfEnd.returnDateOfTheEndOfTheCurrentMonth();
+    sortIncomesByDate();
+    vector <Transaction>::iterator itr = incomes.begin();
+    system ("cls");
+    for (itr; itr < incomes.end(); ++itr)
+    {
+        if (itr->getDate().getMergedDate() >= dateOfBegin.getMergedDate()
+            && itr->getDate().getMergedDate() <= dateOfEnd.getMergedDate())
+        {
+            if (numberOfIncomes == 0)
+                cout << "Przychody w biezacym miesiacu: " << endl << endl;
+            cout << "Lp. " << numberOfIncomes + 1 << endl
+            << "Data transakcji: " << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
+            << endl << "Kwota transakcji: " << fixed << setprecision(2) << itr->getAmount() << endl
+            << "Komentarz: " << itr->getItem() << endl
+            << "ID przychodu: " << itr -> getTransactionId() << endl << endl;
+            numberOfIncomes++;
+            sumOfIncomes += itr->getAmount();
+        }
+    }
+    if (numberOfIncomes == 0)
+        cout << "Brak przychodow w biezacym miesiacu." << endl;
+    cout << "----------------------------------------------------\n\n";
+
+    sortExpensesByDate();
+    itr = expenses.begin();
+    for (itr; itr < expenses.end(); ++itr)
+    {
+        if (itr->getDate().getMergedDate() >= dateOfBegin.getMergedDate()
+            && itr->getDate().getMergedDate() <= dateOfEnd.getMergedDate())
+        {
+            if (numberOfExpenses == 0)
+                cout << "Wydatki w biezacym miesiacu: " << endl << endl;
+            cout << "Lp. " << numberOfExpenses + 1 << endl
+            << "Data transakcji: " << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
+            << endl << "Kwota transakcji: " << fixed << setprecision(2) << itr->getAmount() << endl
+            << "Komentarz: " << itr->getItem() << endl
+            << "ID wydatku: " << itr -> getTransactionId() << endl << endl;
+            numberOfExpenses++;
+            sumOfExpenses += itr->getAmount();
+        }
+    }
+    if (numberOfExpenses == 0)
+        cout << "Brak wydatkow w biezacym miesiacu." << endl;
+    cout << "----------------------------------------------------\n\n";
+
+    cout << "Suma przychodow w biezacym miesiacu: " << sumOfIncomes << endl;
+    cout << "Suma wydatkow w biezacym miesiacu: " << sumOfExpenses << endl;
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << "Saldo w biezacym miesiacu: " << balance << endl;
+    system("pause");
+}
+
+void TransactionManager::showStatementOfPreviousMonth()
+{
+    Date dateOfBegin, dateOfEnd;
+    int numberOfIncomes = 0, numberOfExpenses = 0;
+    float sumOfIncomes = 0, sumOfExpenses = 0, balance = 0;
+
+    dateOfBegin.returnDateOfTheBeginningOfPreviousMonth();
+    dateOfEnd.returnDateOfTheEndOfPreviousMonth();
+    sortIncomesByDate();
+    vector <Transaction>::iterator itr = incomes.begin();
+    system ("cls");
+    for (itr; itr < incomes.end(); ++itr)
+    {
+        if (itr->getDate().getMergedDate() >= dateOfBegin.getMergedDate()
+            && itr->getDate().getMergedDate() <= dateOfEnd.getMergedDate())
+        {
+            if (numberOfIncomes == 0)
+                cout << "Przychody w poprzednim miesiacu: " << endl << endl;
+            cout << "Lp. " << numberOfIncomes + 1 << endl
+            << "Data transakcji: " << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
+            << endl << "Kwota transakcji: " << fixed << setprecision(2) << itr->getAmount() << endl
+            << "Komentarz: " << itr->getItem() << endl
+            << "ID przychodu: " << itr -> getTransactionId() << endl << endl;
+            numberOfIncomes++;
+            sumOfIncomes += itr->getAmount();
+        }
+    }
+    if (numberOfIncomes == 0)
+        cout << "Brak przychodow w poprzednim miesiacu." << endl;
+    cout << "----------------------------------------------------\n\n";
+
+    sortExpensesByDate();
+    itr = expenses.begin();
+    for (itr; itr < expenses.end(); ++itr)
+    {
+        if (itr->getDate().getMergedDate() >= dateOfBegin.getMergedDate()
+            && itr->getDate().getMergedDate() <= dateOfEnd.getMergedDate())
+        {
+            if (numberOfExpenses == 0)
+                cout << "Wydatki w poprzednim miesiacu: " << endl << endl;
+            cout << "Lp. " << numberOfExpenses + 1 << endl
+            << "Data transakcji: " << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
+            << endl << "Kwota transakcji: " << fixed << setprecision(2) << itr->getAmount() << endl
+            << "Komentarz: " << itr->getItem() << endl
+            << "ID wydatku: " << itr -> getTransactionId() << endl << endl;
+            numberOfExpenses++;
+            sumOfExpenses += itr->getAmount();
+        }
+    }
+    if (numberOfExpenses == 0)
+        cout << "Brak wydatkow w poprzednim miesiacu." << endl;
+    cout << "----------------------------------------------------\n\n";
+
+    cout << "Suma przychodow w poprzednim miesiacu: " << sumOfIncomes << endl;
+    cout << "Suma wydatkow w poprzednim miesiacu: " << sumOfExpenses << endl;
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << "Saldo w poprzednim miesiacu: " << balance << endl;
+    system("pause");
 }

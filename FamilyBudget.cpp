@@ -68,3 +68,11 @@ void FamilyBudget::showAllIncomes()
 {
     transactionManager -> showAllIncomes();
 }
+void FamilyBudget::showStatementOfCurrentMonth()
+{
+    transactionManager -> showStatementOfCurrentMonth();
+}
+void FamilyBudget::showStatementOfPreviousMonth()
+{
+    transactionManager -> showStatementOfPreviousMonth();
+}
