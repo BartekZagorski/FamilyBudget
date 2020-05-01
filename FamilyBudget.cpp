@@ -76,3 +76,7 @@ void FamilyBudget::showStatementOfPreviousMonth()
 {
     transactionManager -> showStatementOfPreviousMonth();
 }
+void FamilyBudget::showStatementOfSpecifiedPeriod()
+{
+    transactionManager -> showStatementOfSpecifiedPeriod();
+}

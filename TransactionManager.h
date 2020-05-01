@@ -32,6 +32,7 @@ class TransactionManager
     void showAllIncomes();
     void showStatementOfCurrentMonth();
     void showStatementOfPreviousMonth();
+    void showStatementOfSpecifiedPeriod();
 
 };
 

@@ -390,3 +390,90 @@ void TransactionManager::showStatementOfPreviousMonth()
     cout << "Saldo w poprzednim miesiacu: " << balance << endl;
     system("pause");
 }
+
+void TransactionManager::showStatementOfSpecifiedPeriod()
+{
+    Date dateOfBegin, dateOfEnd;
+    int numberOfIncomes = 0, numberOfExpenses = 0;
+    float sumOfIncomes = 0, sumOfExpenses = 0, balance = 0;
+    system("cls");
+    cout << "Okreslenie daty poczatkowej..." <<endl;
+    system("pause>NULL");
+    dateOfBegin.enterTheDate();
+    system("cls");
+    cout << "Okreslenie daty koncowej..." <<endl;
+    system("pause>NULL");
+    do
+    {
+        dateOfEnd.enterTheDate();
+        if (dateOfEnd.getMergedDate() < dateOfBegin.getMergedDate())
+        {
+            cout << "podana data jest wczesniejsza niz data poczatkowa.\nPodaj date nie wczesniejsza niz "
+            << dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes() << endl;
+            system ("pause");
+        }
+    }
+    while (dateOfEnd.getMergedDate() < dateOfBegin.getMergedDate());
+
+    sortIncomesByDate();
+    vector <Transaction>::iterator itr = incomes.begin();
+    system ("cls");
+    for (itr; itr < incomes.end(); ++itr)
+    {
+        if (itr->getDate().getMergedDate() >= dateOfBegin.getMergedDate()
+            && itr->getDate().getMergedDate() <= dateOfEnd.getMergedDate())
+        {
+            if (numberOfIncomes == 0)
+                cout << "Przychody w okresie od " << dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes()
+                << " do " << dateOfEnd.convertDateFromIntegerToStringSeparatedByDashes() << endl << endl;
+            cout << "Lp. " << numberOfIncomes + 1 << endl
+            << "Data transakcji: " << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
+            << endl << "Kwota transakcji: " << fixed << setprecision(2) << itr->getAmount() << endl
+            << "Komentarz: " << itr->getItem() << endl
+            << "ID przychodu: " << itr -> getTransactionId() << endl << endl;
+            numberOfIncomes++;
+            sumOfIncomes += itr->getAmount();
+        }
+    }
+    if (numberOfIncomes == 0)
+    {
+        cout << "Brak przychodow w okresie od " <<  dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes()
+        << " do " << dateOfEnd.convertDateFromIntegerToStringSeparatedByDashes() << endl;
+    }
+    cout << "----------------------------------------------------\n\n";
+
+    sortExpensesByDate();
+    itr = expenses.begin();
+    for (itr; itr < expenses.end(); ++itr)
+    {
+        if (itr->getDate().getMergedDate() >= dateOfBegin.getMergedDate()
+            && itr->getDate().getMergedDate() <= dateOfEnd.getMergedDate())
+        {
+            if (numberOfExpenses == 0)
+                cout << "Wydatki w okresie od " << dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes()
+                << " do " << dateOfEnd.convertDateFromIntegerToStringSeparatedByDashes() << endl << endl;
+            cout << "Lp. " << numberOfExpenses + 1 << endl
+            << "Data transakcji: " << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
+            << endl << "Kwota transakcji: " << fixed << setprecision(2) << itr->getAmount() << endl
+            << "Komentarz: " << itr->getItem() << endl
+            << "ID wydatku: " << itr -> getTransactionId() << endl << endl;
+            numberOfExpenses++;
+            sumOfExpenses += itr->getAmount();
+        }
+    }
+    if (numberOfExpenses == 0)
+    {
+        cout << "Brak wydatkow w okresie od " <<  dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes()
+        << " do " << dateOfEnd.convertDateFromIntegerToStringSeparatedByDashes() << endl;
+    }
+    cout << "----------------------------------------------------\n\n";
+
+    cout << "Suma przychodow w okresie od " <<  dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes()
+        << " do " << dateOfEnd.convertDateFromIntegerToStringSeparatedByDashes() << ": " << sumOfIncomes << endl;
+    cout << "Suma wydatkow w okresie od " <<  dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes()
+        << " do " << dateOfEnd.convertDateFromIntegerToStringSeparatedByDashes() << ": " << sumOfExpenses << endl;
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << "Saldo w okresie od " <<  dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes()
+        << " do " << dateOfEnd.convertDateFromIntegerToStringSeparatedByDashes() << ": " << balance << endl;
+    system("pause");
+}
