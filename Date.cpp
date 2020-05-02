@@ -114,7 +114,13 @@ bool Date::isDateGood(string dateSeparatedByDashes)
         if (!isDateCorrect(dateSeparatedToYearMonthAndDay))
             return false;
         else
-            return true;
+        {
+            int date = eliminateDashesFromDate(dateSeparatedByDashes);
+            if (isDateBelongToAssumedRangeOfTime(date))
+                return true;
+            else
+                return false;
+        }
     }
 }
 
@@ -130,7 +136,6 @@ int Date::enterTheDate()
     string dateGivenByUser="";
     do
     {
-        system("cls");
         cout << "Podaj date w formacie rrrr-mm-dd: ";
         dateGivenByUser = AuxilliaryMethods::loadLine();
     }
@@ -199,4 +204,17 @@ string Date::convertDateFromIntegerToStringSeparatedByDashes()
     dateSeparatedByDashes.insert(6, "-");
     dateSeparatedByDashes.insert(4, "-");
     return dateSeparatedByDashes;
+}
+
+bool Date::isDateBelongToAssumedRangeOfTime(int date)
+{
+    returnDateOfTheEndOfTheCurrentMonth();
+    if (date >= 20000101 && date <= mergedDate)
+        return true;
+    else
+    {
+        cout << "Podana data nie miescie sie w zakresie od 2000-01-01 do "
+        << convertDateFromIntegerToStringSeparatedByDashes() << "." << endl;
+        return false;
+    }
 }

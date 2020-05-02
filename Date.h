@@ -17,6 +17,7 @@ class Date
     bool isDateFormatCorrect(string date);
     bool isDateCorrect(vector <int> date);
     bool isDateGood(string dateSeparatedByDashes);
+    bool isDateBelongToAssumedRangeOfTime(int date);
 
 public:
 

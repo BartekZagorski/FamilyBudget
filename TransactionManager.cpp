@@ -397,12 +397,11 @@ void TransactionManager::showStatementOfSpecifiedPeriod()
     int numberOfIncomes = 0, numberOfExpenses = 0;
     float sumOfIncomes = 0, sumOfExpenses = 0, balance = 0;
     system("cls");
-    cout << "Okreslenie daty poczatkowej..." <<endl;
-    system("pause>NULL");
+    cout << "Data poczatkowa:" <<endl;
     dateOfBegin.enterTheDate();
-    system("cls");
-    cout << "Okreslenie daty koncowej..." <<endl;
-    system("pause>NULL");
+    system ("cls");
+    cout << "Data poczatkowa: " << dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes() << endl;
+    cout << "Data koncowa:" <<endl;
     do
     {
         dateOfEnd.enterTheDate();
@@ -410,7 +409,6 @@ void TransactionManager::showStatementOfSpecifiedPeriod()
         {
             cout << "podana data jest wczesniejsza niz data poczatkowa.\nPodaj date nie wczesniejsza niz "
             << dateOfBegin.convertDateFromIntegerToStringSeparatedByDashes() << endl;
-            system ("pause");
         }
     }
     while (dateOfEnd.getMergedDate() < dateOfBegin.getMergedDate());
