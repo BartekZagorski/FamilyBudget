@@ -27,9 +27,8 @@ bool UserManager::doesLoginExist(string login)
     {
         if (users[i].getLogin() == login)
         {
-            cout << endl << "Istnieje uzytkownik o takim loginie. Wpisz inny." << endl;
+            cout << "Istnieje uzytkownik o takim loginie. Wpisz inny." << endl;
             system("pause");
-            system("cls");
             return true;
         }
     }
@@ -50,21 +49,21 @@ User UserManager::addDataOfNewUser()
     string loadedLine="";
 
     newUser.setUserId(getNewUserId());
-
     do
     {
+        system("cls");
         cout << "Podaj login: ";
         loadedLine = AuxilliaryMethods::loadLine();
     }
     while (doesLoginExist(loadedLine));
     newUser.setLogin(loadedLine);
-    cout << endl <<"Podaj Imie: ";
+    cout << "Podaj Imie: ";
     loadedLine = AuxilliaryMethods::loadLine();
     newUser.setFirstName(loadedLine);
-    cout << endl <<"Podaj Nazwisko: ";
+    cout << "Podaj Nazwisko: ";
     loadedLine = AuxilliaryMethods::loadLine();
     newUser.setLastName(loadedLine);
-    cout << endl <<"Podaj Haslo: ";
+    cout << "Podaj Haslo: ";
     loadedLine = AuxilliaryMethods::loadLine();
     newUser.setPassword(loadedLine);
 

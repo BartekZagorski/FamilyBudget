@@ -80,3 +80,7 @@ void FamilyBudget::showStatementOfSpecifiedPeriod()
 {
     transactionManager -> showStatementOfSpecifiedPeriod();
 }
+bool FamilyBudget::isUserLoggedIn()
+{
+    userManager.isUserLoggedIn();
+}

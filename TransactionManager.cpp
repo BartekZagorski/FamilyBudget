@@ -30,6 +30,7 @@ Transaction TransactionManager::enterNewTransactionData(string typeOfTransaction
             newTransaction.setTransactionId(fileWithExpenses.getLastTransactionId());
         }
     newTransaction.setUserId(LOGGED_IN_USER_ID);
+    system ("cls");
     Date date;
     cout << "Czy chcesz dodac transakcje z dnia dzisiejszego? (t/n)";
     char choice;
@@ -74,6 +75,7 @@ void TransactionManager::editTransaction(string typeOfTransaction)
 {
     int idGivenByUser = 0;
     int indexOfTransaction = 0;
+    system ("cls");
     if (typeOfTransaction == "income")
     {
         cout << "podaj ID przychodu, ktory chcesz edytowac. ";
@@ -181,6 +183,7 @@ int TransactionManager::deleteTransaction(string typeOfTransaction)
 {
     int idGivenByUser = 0;
     int indexOfTransaction = 0;
+    system ("cls");
     if (typeOfTransaction == "income")
     {
         cout << "Podaj ID przychodu, ktory chcesz usunac: ";

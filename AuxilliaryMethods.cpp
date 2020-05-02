@@ -77,3 +77,44 @@ char AuxilliaryMethods::chooseOptionFromEditionMenu()
     return choice;
 }
 
+char AuxilliaryMethods::chooseOptionFromMainMenu()
+{
+    char choice;
+
+    cout << "------------------MENU GLOWNE------------------" << endl;
+    cout << "1. Rejestracja " << endl;
+    cout << "2. Logowanie " << endl;
+    cout << "9. Wyjscie" << endl;
+
+    do
+    {
+        choice = getch();
+    }
+    while (choice != '1' && choice != '2' && choice != '9');
+    return choice;
+}
+
+char AuxilliaryMethods::chooseOptionFromUserMenu()
+{
+    char choice;
+
+    cout << "------------------MENU UZYTKOWNIKA------------------" << endl;
+    cout << "1. Dodaj przychod " << endl;
+    cout << "2. Dodaj wydatek " << endl;
+    cout << "3. Edytuj przychod" << endl;
+    cout << "4. Edytuj wydatek" << endl;
+    cout << "5. Usun przychod" << endl;
+    cout << "6. Usun wydatek" << endl;
+    cout << "7. Pokaz bilans z biezacego miesiaca" << endl;
+    cout << "8. Pokaz bilans z ubieglego miesiaca" << endl;
+    cout << "9. Pokaz bilans z wybranego okresu" << endl;
+    cout << "0. Zmien haslo" << endl;
+    cout << "ESC. Wyloguj" << endl;
+
+    do
+    {
+        choice = getch();
+    }
+    while ((choice < '0' || choice > '9') && choice != 27 );
+    return choice;
+}

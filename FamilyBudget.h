@@ -32,6 +32,7 @@ public:
     void showStatementOfCurrentMonth();
     void showStatementOfPreviousMonth();
     void showStatementOfSpecifiedPeriod();
+    bool isUserLoggedIn();
 };
 
 #endif

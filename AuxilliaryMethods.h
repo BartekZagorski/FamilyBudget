@@ -16,6 +16,8 @@ public:
     static string convertFloatToString(float number);
     static string convertIntToString(int number);
     static char chooseOptionFromEditionMenu();
+    static char chooseOptionFromMainMenu();
+    static char chooseOptionFromUserMenu();
 };
 
 
