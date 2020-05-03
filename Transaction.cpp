@@ -60,7 +60,7 @@ string Transaction::getItem()
 {
     return item;
 }
-bool Transaction::isAmountGood(string loadedLine)
+bool Transaction::isAmountGood(string& loadedLine)
 {
     if (loadedLine.length() == 0)
         return false;

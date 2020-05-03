@@ -28,7 +28,7 @@ public:
     Date getDate();
     float getAmount();
     string getItem();
-    bool isAmountGood(string loadedLine);
+    bool isAmountGood(string& loadedLine);
     string enterAmount ();
 
 };
