@@ -52,6 +52,7 @@ User UserManager::addDataOfNewUser()
     do
     {
         system("cls");
+        cout << "          >>>REJESTRACJA<<<" << endl;
         cout << "Podaj login: ";
         loadedLine = AuxilliaryMethods::loadLine();
     }
@@ -85,6 +86,8 @@ int UserManager::login()
     string login = "";
     string password = "";
 
+    system("cls");
+    cout << "          >>>LOGOWANIE<<<" << endl;
     cout << "Podaj login: ";
     login = AuxilliaryMethods::loadLine();
 

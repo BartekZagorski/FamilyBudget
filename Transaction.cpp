@@ -93,7 +93,6 @@ string Transaction::enterAmount()
     string amount = "";
     do
     {
-        system("cls");
         cout << "Podaj Kwote: ";
         amount = AuxilliaryMethods::loadLine();
     }

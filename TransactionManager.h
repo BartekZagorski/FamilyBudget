@@ -22,6 +22,7 @@ class TransactionManager
     static bool compareByDate (Transaction first, Transaction second);
     void sortIncomesByDate();
     void sortExpensesByDate();
+    void showFoundTransaction(string typeOfTransaction, int indexOfTransaction);
 
     public:
     TransactionManager(string = "incomes.xml", string = "expenses.xml", int = 0);
@@ -29,7 +30,6 @@ class TransactionManager
     int addTransaction(string typeOfTransaction);
     void editTransaction(string typeOfTransaction);
     int deleteTransaction(string typeOfTransaction);
-    void showAllIncomes();
     void showStatementOfCurrentMonth();
     void showStatementOfPreviousMonth();
     void showStatementOfSpecifiedPeriod();

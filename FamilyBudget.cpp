@@ -33,6 +33,9 @@ void FamilyBudget::logOut()
     userManager.setLoggedInUserId(0);
     delete transactionManager;
     transactionManager = NULL;
+    system ("cls");
+    cout << "wylogowano uzytkownika" << endl;
+    system ("pause");
 }
 
 void FamilyBudget::changeLoggedInUserPassword()
@@ -63,10 +66,6 @@ void FamilyBudget::deleteIncome()
 void FamilyBudget::deleteExpense()
 {
     transactionManager -> deleteTransaction("expense");
-}
-void FamilyBudget::showAllIncomes()
-{
-    transactionManager -> showAllIncomes();
 }
 void FamilyBudget::showStatementOfCurrentMonth()
 {

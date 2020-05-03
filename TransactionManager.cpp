@@ -38,13 +38,17 @@ Transaction TransactionManager::enterNewTransactionData(string typeOfTransaction
     {
         choice = getch();
     }
+    cout << endl;
     if (choice == 't' || choice == 'T')
+    {
         date.getTodayDate();
+    }
     else
+    {
         date.enterTheDate();
+    }
     newTransaction.setDate(date);
     loadedLine = newTransaction.enterAmount();
-    system("cls");
     cout << "Podaj komentarz: ";
     loadedLine = AuxilliaryMethods::loadLine();
     newTransaction.setItem(loadedLine);
@@ -83,37 +87,43 @@ void TransactionManager::editTransaction(string typeOfTransaction)
         indexOfTransaction = findIndexOfTransaction(idGivenByUser, "income");
         if (indexOfTransaction == -1)
             return;
-        char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
-
-        switch (choice)
+        while (true)
         {
-        case '1':
+            showFoundTransaction("income", indexOfTransaction);
+            char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
+
+            switch (choice)
             {
-                Date date;
-                incomes[indexOfTransaction].setDate(date.enterTheDate());
-                fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
-                break;
-            }
-        case '2':
-            {
-                string amount = "";
-                amount = incomes[indexOfTransaction].enterAmount();
-                incomes[indexOfTransaction].setAmount(amount);
-                fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
-                break;
-            }
-        case '3':
-            {
-                string item = "";
-                cout << "podaj komentarz: ";
-                item = AuxilliaryMethods::loadLine();
-                incomes[indexOfTransaction].setItem(item);
-                fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
-                break;
+            case '1':
+                {
+                    Date date;
+                    incomes[indexOfTransaction].setDate(date.enterTheDate());
+                    fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+                    break;
+                }
+            case '2':
+                {
+                    string amount = "";
+                    amount = incomes[indexOfTransaction].enterAmount();
+                    incomes[indexOfTransaction].setAmount(amount);
+                    fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+                    break;
+                }
+            case '3':
+                {
+                    string item = "";
+                    cout << "podaj komentarz: ";
+                    item = AuxilliaryMethods::loadLine();
+                    incomes[indexOfTransaction].setItem(item);
+                    fileWithIncomes.editTransactionInsideFile(incomes[indexOfTransaction]);
+                    break;
+                }
+            case '9':
+                {
+                    return;
+                }
             }
         }
-        cout << "edycja zakonczona pomyslnie" << endl;
-        system ("pause");
     }
     else
     {
@@ -122,38 +132,46 @@ void TransactionManager::editTransaction(string typeOfTransaction)
         indexOfTransaction = findIndexOfTransaction(idGivenByUser, "expense");
         if (indexOfTransaction == -1)
             return;
-        char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
-
-        switch (choice)
+        while (true)
         {
-        case '1':
+            showFoundTransaction("expense", indexOfTransaction);
+            char choice = AuxilliaryMethods::chooseOptionFromEditionMenu();
+
+            switch (choice)
             {
-                Date date;
-                expenses[indexOfTransaction].setDate(date.enterTheDate());
-                fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
-                break;
-            }
-        case '2':
-            {
-                string amount = "";
-                amount = expenses[indexOfTransaction].enterAmount();
-                expenses[indexOfTransaction].setAmount(amount);
-                fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
-                break;
-            }
-        case '3':
-            {
-                string item = "";
-                cout << "podaj komentarz: ";
-                item = AuxilliaryMethods::loadLine();
-                expenses[indexOfTransaction].setItem(item);
-                fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
-                break;
+            case '1':
+                {
+                    Date date;
+                    expenses[indexOfTransaction].setDate(date.enterTheDate());
+                    fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
+                    break;
+                }
+            case '2':
+                {
+                    string amount = "";
+                    amount = expenses[indexOfTransaction].enterAmount();
+                    expenses[indexOfTransaction].setAmount(amount);
+                    fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
+                    break;
+                }
+            case '3':
+                {
+                    string item = "";
+                    cout << "podaj komentarz: ";
+                    item = AuxilliaryMethods::loadLine();
+                    expenses[indexOfTransaction].setItem(item);
+                    fileWithExpenses.editTransactionInsideFile(expenses[indexOfTransaction]);
+                    break;
+                }
+            case '9':
+                {
+                    return;
+                }
             }
         }
-        cout << "edycja zakonczona pomyslnie" << endl;
-        system ("pause");
     }
+    cout << "edycja zakonczona pomyslnie" << endl;
+    system ("pause");
 }
 
 int TransactionManager::findIndexOfTransaction (int transactionId, string typeOfTransaction)
@@ -194,8 +212,8 @@ int TransactionManager::deleteTransaction(string typeOfTransaction)
         char choice;
         do
         {
-            system("cls");
-            cout << "czy na pewno usunac przychod o ID " << idGivenByUser << "? (t/n) ";
+            showFoundTransaction("income", indexOfTransaction);
+            cout << "czy na pewno usunac przychod? (t/n) ";
             choice = getch();
         }
         while (choice != 't' && choice != 'n' && choice != 'T' && choice != 'N');
@@ -224,8 +242,8 @@ int TransactionManager::deleteTransaction(string typeOfTransaction)
         char choice;
         do
         {
-            system("cls");
-            cout << "czy na pewno usunac wydatek o ID " << idGivenByUser << "? (t/n) ";
+            showFoundTransaction("expense", indexOfTransaction);
+            cout << "czy na pewno usunac wydatek? (t/n) ";
             choice = getch();
         }
         while (choice != 't' && choice != 'n' && choice != 'T' && choice != 'N');
@@ -246,17 +264,26 @@ int TransactionManager::deleteTransaction(string typeOfTransaction)
     }
 }
 
-void TransactionManager::showAllIncomes()
+void TransactionManager::showFoundTransaction(string typeOfTransaction, int indexOfTransaction)
 {
-    sortIncomesByDate();
-    vector <Transaction>::iterator itr = incomes.begin();
-    for (itr; itr < incomes.end(); ++itr)
+    system ("cls");
+    if (typeOfTransaction == "income")
     {
-        cout << itr -> getTransactionId() <<
-        endl << itr->getDate().convertDateFromIntegerToStringSeparatedByDashes()
-        << endl << fixed << setprecision(2) << itr->getAmount() << endl << itr->getItem()
+        cout  << "Data: " <<incomes[indexOfTransaction].getDate().convertDateFromIntegerToStringSeparatedByDashes()
+        << endl << "Kwota: " << fixed << setprecision(2) << incomes[indexOfTransaction].getAmount()
+        << endl << "Komentarz: " << incomes[indexOfTransaction].getItem()
+        << endl << "ID: " << incomes[indexOfTransaction].getTransactionId()
         << endl << endl;
     }
+    else
+    {
+        cout  << "Data: " << expenses[indexOfTransaction].getDate().convertDateFromIntegerToStringSeparatedByDashes()
+        << endl << "Kwota: " << fixed << setprecision(2) << expenses[indexOfTransaction].getAmount()
+        << endl << "Komentarz: " << expenses[indexOfTransaction].getItem()
+        << endl << "ID: " << expenses[indexOfTransaction].getTransactionId()
+        << endl << endl;
+    }
+
 }
 
 bool TransactionManager::compareByDate (Transaction first, Transaction second)

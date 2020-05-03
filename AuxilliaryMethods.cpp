@@ -71,9 +71,15 @@ char AuxilliaryMethods::chooseOptionFromEditionMenu()
     cout << "---------------MENU EDYCJA---------------" << endl;
     cout << "1. Edytuj date. " << endl;
     cout << "2. Edytuj kwote. " << endl;
-    cout << "3. Edytuj komentarz " << endl;
+    cout << "3. Edytuj komentarz. " << endl;
+    cout << "9. Powrot do Menu Uzytkownika. " << endl;
 
-    choice = getch();
+    do
+    {
+        choice = getch();
+    }
+    while (choice != '1' && choice != '2' && choice != '3' && choice != '9');
+
     return choice;
 }
 

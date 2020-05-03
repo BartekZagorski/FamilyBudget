@@ -28,7 +28,6 @@ public:
     void editExpense();
     void deleteIncome();
     void deleteExpense();
-    void showAllIncomes();
     void showStatementOfCurrentMonth();
     void showStatementOfPreviousMonth();
     void showStatementOfSpecifiedPeriod();
