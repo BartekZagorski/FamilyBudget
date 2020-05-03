@@ -9,7 +9,6 @@ using namespace std;
 
 class Transaction
 {
-    public:
     int transactionId;
     int userId;
     Date date;
